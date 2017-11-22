@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CapiTainS Guideline Single File Validator</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modification.css') }}">
+  </head>
+  <body>
+    <div class="container">
+
+      <header class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a class="nav-link active" href="{{url_for('index')}}">{{_("Home")}} <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/capitains/hooktest-validator-app">Github</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="mailto:thibault.clerice{{_("@@@")}}enc-sorbonne.fr">Contact</a>
+            </li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">CapiTainS Guideline Single File Validator</h3>
+      </header>
+      <main>
+          {% if error %}
+            <div class="alert alert-danger" role="alert">
+              {{error}}
+            </div>
+          {% endif %}
+          {% block main %}
+          {% endblock %}
+      </main>
+    </div>
+
+  </body>
+</html>

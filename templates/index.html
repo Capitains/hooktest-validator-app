@@ -1,36 +1,15 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>CapiTainS Guideline Single File Validator</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/modification.css') }}">
-  </head>
-  <body>
-    <div class="container">
-
-      <header class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills float-right">
-            <li class="nav-item">
-              <a class="nav-link active" href="{{url_for('index')}}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://github.com/capitains/hooktest-validator-app">Github</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="mailto:thibault.clerice[chez]enc-sorbonne.fr">Contact</a>
-            </li>
+{%extends "container.html" %}
+{% block main %}
+        <div class="alert alert-warning">
+          <p>This application, while it tests the content of files, will not perform following tests :</p>
+          <ul>
+            <li>TEI/Epidoc Scheme compliancy check</li>
+            <li>Filepath compliancy checking</li>
+            <li>Verification of declaration of identifier in metadata</li>
           </ul>
-        </nav>
-        <h3 class="text-muted">CapiTainS Guideline Single File Validator</h3>
-      </header>
-
-      <main role="main">
+          <p><em>However</em>, it will run all others tests and ensure that your XML is compliant with CapiTainS Suite
+            and Guidelines. This tool should be supplementary to the use of HookTest with Travis or on your local machine.</p>
+        </div>
         <form action="{{url_for('evaluation')}}" method="POST">
           <fieldset class="form-group">
             <div class="row">
@@ -38,14 +17,8 @@
               <div class="col-sm-10">
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="resource_type" id="resource_type_textgroup" value="cts_textgroup" checked />
-                    CapiTainS CTS Guidelines - <em>Textgroup</em>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="resource_type" id="resource_type_work" value="cts_work" />
-                    CapiTainS CTS Guidelines - <em>Work</em>
+                    <input class="form-check-input" type="radio" name="resource_type" id="resource_type_work" value="cts_metadata" />
+                    CapiTainS CTS Guidelines - <em>Metadata Object</em>
                   </label>
                 </div>
                 <div class="form-check">
@@ -65,14 +38,8 @@
           </fieldset>
           <div class="form-group">
             <label for="xml_content">XML Contents</label>
-            <textarea id="xml_content" name="xml_content" class="form-control" rows="10">
-
-            </textarea>
+            <textarea id="xml_content" name="resource" class="form-control" rows="10"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-      </main>
-    </div>
-
-  </body>
-</html>
+{%endblock%}}

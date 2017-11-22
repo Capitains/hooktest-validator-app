@@ -26,3 +26,19 @@ body {
   line-height: 3rem;
 }
 
+.logs {
+  clear: left;
+  padding: 5px;
+  color: #f1f1f1;
+  font-family: Monaco,monospace;
+  font-size: 12px;
+  line-height: 14px;
+  background-color: #222;
+  margin:0;
+}
+
+.logs li {
+  margin:0;
+  word-wrap: break-word;
+  padding:0;
+}

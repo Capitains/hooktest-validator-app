@@ -1,0 +1,24 @@
+{%extends "container.html" %}
+{% block main %}
+<article>
+    <h2>Evaluation Results</h2>
+    <div>
+        <h3>Details</h3>
+        <div class="alert alert-info">To do</div>
+    </div>
+    <div>
+        <h3>Test Results</h3>
+        {% for result, details in results.items() %}
+            <h4>{{result}}
+            <span class="badge {%if details[0] %}badge-success{% else %}badge-danger{% endif %}">{%if details[0] %}{{_('Passed')}}{% else %}{{_('Failed')}}{% endif %}</span>
+
+            </h4>
+            {% if details[1] %}
+            <ul class="logs">
+                {% for log in details[1] %}<li>{{log}}</li>{%endfor%}
+            </ul>
+            {% endif %}
+        {% endfor %}
+    </div>
+</article>
+{% endblock %}
