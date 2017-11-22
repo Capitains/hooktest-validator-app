@@ -70,7 +70,7 @@ def advanced_test(obj):
         obj.test_status[test] = status
         data.append((CTSText_TestUnit.readable[test], status, obj.logs))
         if test in obj.breaks and status == False:
-            for t in obj[i+1:]:
+            for t in obj.tests[i+1:]:
                 obj.test_status[t] = False
                 data.append((CTSText_TestUnit.readable[t], False, []))
             break
@@ -92,7 +92,7 @@ def textgroup_eval(xml):
         print(E)
         raise XMLParsingError()
     return {
-        "results": {gettext(readable): (status, logs) for readable, status, logs in test(test_unit)}
+        "results": [(gettext(readable), status, logs) for readable, status, logs in test(test_unit)]
     }
 
 
@@ -112,5 +112,5 @@ def cts_text_eval(xml, scheme="tei"):
     except Exception as E:
         raise XMLParsingError()
     return {
-        "results": {gettext(readable): (status, logs) for readable, status, logs in advanced_test(test_unit)}
+        "results": [(gettext(readable), status, logs) for readable, status, logs in advanced_test(test_unit)]
     }

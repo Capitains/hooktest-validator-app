@@ -8,16 +8,14 @@
     </div>
     <div>
         <h3>Test Results</h3>
-        {% for result, details in results.items() %}
+        {% for result, status, logs in results %}
             <h4>{{result}}
-            <span class="badge {%if details[0] %}badge-success{% else %}badge-danger{% endif %}">{%if details[0] %}{{_('Passed')}}{% else %}{{_('Failed')}}{% endif %}</span>
+            <span class="badge {%if status %}badge-success{% else %}badge-danger{% endif %}">{%if status %}{{_('Passed')}}{% else %}{{_('Failed')}}{% endif %}</span>
 
             </h4>
-            {% if details[1] %}
             <ul class="logs">
-                {% for log in details[1] %}<li>{{log}}</li>{%endfor%}
+                {% for log in logs %}<li>{{log}}</li>{%endfor%}
             </ul>
-            {% endif %}
         {% endfor %}
     </div>
 </article>
