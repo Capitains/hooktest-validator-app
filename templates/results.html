@@ -2,6 +2,7 @@
 {% block main %}
 <article>
     <h2>Evaluation Results</h2>
+    <span id="general_status" class="badge {%if status %}badge-success{% else %}badge-danger{% endif %}">{%if status %}{{_('Passed')}}{% else %}{{_('Failed')}}{% endif %}</span>
     <div>
         <h3>Details</h3>
         <div class="alert alert-info">To do</div>

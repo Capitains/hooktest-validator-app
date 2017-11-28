@@ -28,6 +28,12 @@ class XMLParsingError(AppError):
         return gettext("There was an error parsing the XML")
 
 
+def encapsulate_results(results):
+    if "results" in results:
+        results["status"] = False not in [r for _, r, _ in results["results"]]
+    return results
+
+
 def router(form_data):
     """ Dispatches form_data to different test functions
 
